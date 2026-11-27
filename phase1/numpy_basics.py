@@ -19,13 +19,12 @@ by_hand_var = np.mean(x ** 2) - np.mean(x) ** 2
 var_def = np.mean((x - mean_x) ** 2)
 
 
-std = np.var(x , ddof=1)
-print(std)
+sample_var = np.var(x , ddof=1)
+print(sample_var)
 
 rng = np.random.default_rng(0)
 true_var = 4.0   # draws from Normal(0, sd=2)
 
-n_vals = []
 d0 = []
 d1 = []
 for _ in range(100000):
@@ -36,3 +35,14 @@ for _ in range(100000):
 print("True:    " + str(true_var))
 print("ddof=0:  " + str(np.mean(d0)))
 print("ddof=1:  " + str(np.mean(d1)))
+
+meansExp = []
+stdExp = []
+for _ in range(100000):
+    samples = rng.exponential(scale = 2.0, size = 10)
+    meansExp.append(np.mean(samples))
+    stdExp.append(np.std(samples))
+
+
+print (np.mean(meansExp))
+print (np.mean(stdExp))
